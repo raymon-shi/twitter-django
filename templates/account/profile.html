@@ -1,0 +1,14 @@
+{% extends "main.html" %} 
+{% load static %}
+{% block content %} 
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Profile Page 🦜</h1>
+      {% include "navbar.html" %}
+    </div>
+  </section>
+{% include "account/profile_card.html" %} 
+{% include "account/feed.html" with tweets=tweets %} 
+{% include "account/edit_profile_form.html" with profile=profile %}
+<script src="{% static "account/account.js" %}"></script>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Hashtag Page 🦜</h1>
+      {% include "navbar.html" %}
+    </div>
+  </section>
+  <div class="container">
+    <h1 class="title">{{hashtag_name}} Tweets</h1>
+    {% for hashtag in hashtags %}
+      {% include "tweet/tweet.html" with tweet=hashtag.tweet %}
+    {% endfor %}
+  </div>
+{% endblock content %}

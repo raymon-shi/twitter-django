@@ -1,0 +1,14 @@
+{% extends "main.html" %} 
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Twitter 🦜</h1>
+      <p class="subtitle">Let's tweet about it!</p>
+      <div class="buttons">
+        <a href="{% url 'signup' %}" class="button is-primary">Sign Up!</a>
+        <a href="{% url 'login' %}" class="button is-link">Log In!</a>
+      </div>
+    </div>
+
+  </section>
+{% endblock content %}

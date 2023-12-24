@@ -1,0 +1,89 @@
+{% extends "main.html" %} 
+
+{% block content %}
+  <div class="modal profile-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Edit Profile</p>
+        <a href="{{request.path_info}}" class="delete" aria-label="close"></a>
+      </header>
+      <section class="modal-card-body">
+        <form method="POST" action="{% url "update_profile" profile.id %}" id="update-profile-form">
+          {% csrf_token %}
+
+          <div class="field">
+            <label class="label">First name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your first name" value="{{profile.user.first_name}}" name="first_name" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Last name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your last name" value="{{profile.user.last_name}}" name="last_name" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Handle</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your handle" value="{{profile.handle}}" name="handle" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Birthday</label>
+            <div class="control">
+              <input class="input" type="date" placeholder="Enter your birthday" value="{{profile.birthday|date:"Y-m-d"}}" name="birthday" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control"><input class="input" type="email" placeholder="Enter your email" value="{{profile.user.email}}" name="email" /></div>
+          </div>
+
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your username" value="{{profile.user.username}}" name="username" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input class="input" type="textarea" placeholder="Enter your description" name="description" value="{{profile.description}}" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Profile Url</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your profile" value="{{profile.profile_url}}" name="profile" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Personal Url</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your profile" value="{{profile.personal_url}}" name="personal" />
+            </div>
+          </div>
+        </form>
+      </section>
+      <footer class="modal-card-foot">
+        <div class="field is-grouped">
+          <div class="control">
+            <button form="update-profile-form" class="button is-danger">Update</button>
+          </div>
+          <div class="control">
+            <a href="{{request.path_info}}" class="button is-link">Cancel</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+{% endblock content %}

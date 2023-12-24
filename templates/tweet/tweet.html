@@ -1,0 +1,79 @@
+{% extends "main.html" %} 
+{% block content %}
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img src="{{tweet.author.profile_url}}" alt="Profile" />
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <a href="{% url 'profile' tweet.author.id %}">
+              <strong>{{tweet.author.user.first_name}} {{tweet.author.user.last_name}}</strong>
+            </a>
+            <small>@{{tweet.author.handle}}</small>
+            <small>{{tweet.created|timesince}}</small>
+            <br />
+              {% for word in tweet.body.split %}
+                {% if word|first == "#" %}
+                  <a href="{% url 'view_hashtag' word %}">{{word}}</a>
+                {% elif word|first == "@" %}
+                  {% for profile in profiles %}
+                    {% if word|slice:"1:" == profile.handle %}
+                      <a href="{% url 'profile' profile.id %}">{{word}}</a>
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {{word}}
+                {% endif %}
+              {% endfor %}
+            </p>
+          </p>
+        </div>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a href="{% url 'view_tweet' tweet.id %}" class="level-item" aria-label="reply">
+              <span class="icon is-small">
+                <i class="fas fa-reply" aria-hidden="true"></i>
+                <p> 
+                  {% if tweet.num_of_comments %}
+                    {{tweet.num_of_comments}}
+                  {% endif %}
+                </p>
+              </span>
+            </a>
+            <a href="{% url 'retweet' tweet.id %}" class="level-item" aria-label="retweet">
+              <span class="icon is-small">
+                <i class="fas fa-retweet" aria-hidden="true"></i>
+                <p>                  
+                  {% if tweet.num_of_retweets %}
+                    {{tweet.num_of_retweets}}
+                  {% endif %}
+                </p>
+              </span>
+            </a>
+            <a href="{% url 'like_tweet' tweet.id %}" class="level-item" aria-label="like">
+              <span class="icon is-small">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <p>
+                  {% if tweet.num_of_likes %}
+                    {{tweet.num_of_likes}}
+                  {% endif %}
+                </p>
+              </span>
+            </a>
+            {% if request.user.id == tweet.author.id %}
+              <a href="{% url 'delete_tweet' tweet.id %}" class="level-item delete-tweet-button" aria-label="delete">
+                <span class="icon is-small">
+                  <i class="fas fa-trash"></i>
+                </span>
+              </a>
+            {% endif %}
+          </div>
+        </nav>
+      </div>
+    </article>
+  </div>
+{% endblock content %}

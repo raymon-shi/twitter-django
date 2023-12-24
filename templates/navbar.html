@@ -1,0 +1,28 @@
+{% extends "main.html" %} 
+{% block content %}
+  <span class="icon-text">
+    <span class="icon">
+      <i class="fas fa-home"></i>
+    </span>
+    <a href="{% url 'home' %}">Home</a>
+  </span>
+  <span class="icon-text">
+    <span class="icon">
+      <i class="fas fa-user"></i>
+    </span>
+    <a href="{% url 'profile' request.user.id %}">Profile</a>
+  </span>
+  <span class="icon-text">
+    <span class="icon">
+      <i class="fas fa-users"></i>
+    </span>
+    <a href="{% url 'all_tweets' %}">What are others saying?</a>
+  </span>
+  <span class="icon-text">
+    <span class="icon">
+      <i class="fas fa-sign-out-alt"></i>
+    </span>
+    <a href="{% url 'logout' %}">Log Out</a>
+  </span>
+{% include "search_bar.html"%} 
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "main.html" %} 
+{% block content %}
+  <section class="section is-one-fifth">
+    <div class="container">
+      <h1 class="title">Log In</h1>
+      <p class="subtitle">Fill out this form to login!</p>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="notification is-danger">
+              <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter your username" name="username" />
+            </div>
+          </div>
+    
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="Enter your passowrd" name="password" />
+            </div>
+          </div>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+          <div class="control">
+            <a href="{% url 'splash' %}" class="button is-link is-light">Cancel</a>
+          </div>
+        </div>
+      </form>
+    </div>    
+  </section>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends "main.html" %} 
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Sign Up</h1>
+      <p class="subtitle">Fill out this form to sign up!</p>
+    </div>
+    <hr />
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="field">
+        <label class="label">First name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your first name" name="first_name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Last name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your last name" name="last_name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Handle</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your handle" name="handle" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Birthday</label>
+        <div class="control">
+          <input class="input" type="date" placeholder="Enter your birthday" name="birthday" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control"><input class="input" type="email" placeholder="Enter your email" / name="email"></div>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your username" name="username" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="password" placeholder="Enter your passowrd" name="password" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <input class="input" type="textarea" placeholder="Enter your description" name="description" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Profile Url</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your profile" name="profile" />
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <a href="{% url 'splash' %}" class="button is-link is-light">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </section>
+{% endblock content %}

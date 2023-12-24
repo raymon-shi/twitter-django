@@ -1,0 +1,14 @@
+{% extends "main.html" %} 
+
+{% block content %} 
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Home Page 🦜</h1>
+      {% include "navbar.html" %}
+    </div>
+  </section>
+  <section class="section">{% include "tweet/tweet_form.html" %}</section>
+  <section class="section">
+    {% include "account/feed.html" %}
+  </section>
+{% endblock content %}

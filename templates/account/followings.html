@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">People Who {{request.user.profile}} Follow 🦜</h1>
+      {% include "navbar.html" %}
+    </div>
+  </section>
+  {% for follow in follows %}
+    {% include "account/profile_card.html" with profile=follow.followee %}
+  {% endfor %}
+{% endblock content %}

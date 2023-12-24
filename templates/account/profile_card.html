@@ -1,0 +1,48 @@
+{% extends "main.html" %} 
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="{{profile.profile_url}}" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <a href="{% url 'profile' profile.id %}"><p class="title is-4">{{profile.user.first_name}} {{profile.user.last_name}}</p></a>
+              <p class="subtitle is-6">@{{profile.handle}}</p>
+            </div>
+            {% if request.user.id == profile.user.id and page == 'profile' %}
+              <button class="button is-info edit-profile-button">Edit Profile</button>
+            {% endif %}
+            {% if request.user.id != profile.user.id and page == 'profile' %}
+              <a href="{% url 'follow' profile.id %}" class="button is-primary">
+                {% if connection %}
+                  Unfollow
+                {% else %}
+                  Follow
+                {% endif %}
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="content">
+            <p>{{profile.description}}</p>
+            <div class="columns">
+              <a href="{{profile.personal_url}}" class="column">Personal Link: {{profile.personal_url}}</a>
+              <p class="column">Born on {{profile.birthday|date}}</p>
+              <p class="column">Joined on {{profile.created|date}}</p>
+            </div>
+          </div>
+          <div class="content">
+            <a href="{% url 'view_followers' profile.id %}"><p>{{profile.num_of_followers}} Followers</p></a>
+            <a href="{% url 'view_followings' profile.id %}"><p>{{profile.num_of_followings}} Following</p></a>
+            <p>{{profile.num_of_tweets}} Tweets</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

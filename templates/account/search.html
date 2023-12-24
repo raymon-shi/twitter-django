@@ -1,0 +1,12 @@
+{% extends "main.html" %} 
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Search Results Page 🦜</h1>
+      {% include "navbar.html" %}
+    </div>
+  </section>
+  {% for profile in profiles %} 
+    {% include "account/profile_card.html" with profile=profile %} 
+  {% endfor %} 
+{% endblock content %}

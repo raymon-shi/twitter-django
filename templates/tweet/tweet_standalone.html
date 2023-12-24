@@ -1,0 +1,21 @@
+{% extends "main.html" %} 
+{% block content %} 
+<section class="section">
+  <div class="container">
+    <h1 class="title">Tweet Page 🦜</h1>
+    {% include "navbar.html" %}
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Tweet Thread</h1>
+    {% include "tweet/tweet.html" with tweet=tweet %}
+    {% include "tweet/tweet_form.html" %}
+    <br>
+    <h1 class="title">Comments</h1>
+    {% for comment in comments %}
+      {% include "tweet/tweet.html" with tweet=comment.curr_tweet %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}
